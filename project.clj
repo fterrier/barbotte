@@ -1,4 +1,4 @@
-(defproject barbotte "0.1.0-SNAPSHOT"
+(defproject barbotte "0.0.1-SNAPSHOT"
   :description "A library to create bots"
   :url "https://github.com/fterrier/barbotte"
   :license {:name "Eclipse Public License"
