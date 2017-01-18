@@ -6,15 +6,12 @@
   (str/split (str/trim text) #"\s+"))
 
 ;; TODO handle edited-message
+;; TODO define a schema for the input and the output of this
+;; atm this is fine for telegram but what about other message format
 (defn- parse-message [{:keys [message] :as data}]
   "Takes a telegram message and parses it to {:user ... :command-key ... :error ...}"
   (log/info "Parsing message" message)
-  (let [user       (:from message)
-        args       (parse-command (:text message))
-        message-id (:message_id message)]
-    {:user user
-     :args args
-     :message-id message-id}))
+  (assoc data :args (parse-command (:text message))))
 
 (defn- find-command [commands message]
   (some (fn [{:keys [match-fn] :as command}] 

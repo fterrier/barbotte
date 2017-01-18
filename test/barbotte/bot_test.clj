@@ -26,14 +26,6 @@
                             (is (nil? command))
                             (is (= :command-not-found (:error response))))]
       (bot/handle-message* [] (telegram-message "garbage") send-to-user-fn)))
-
-  (testing "User parses correctly"
-    (let [handle-fn (fn [{:keys [user]} _]
-                      (is (= user {:id 86757011
-                                   :first_name "François"
-                                   :last_name "Terrier"
-                                   :username "fterrier"})))]
-      (bot/handle-message* [{:match-fn (match-first "test") :handle-fn handle-fn}] (telegram-message "test") nil)))
   
   (testing "Args are passed correctly"
     (let [handle-fn (fn [{:keys [args]} _]
